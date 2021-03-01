@@ -1,0 +1,29 @@
+FROM bref/php-74
+
+# create a place to put installation scripts
+RUN mkdir /install
+COPY install-composer.sh /install/
+RUN /install/install-composer.sh
+
+# install unzip, which composer prefers when installing packages over PHP's unzipping tools
+# install groupadd
+RUN yum -y install unzip shadow-utils.x86_64 aws-cli tar gzip make
+
+# https://vsupalov.com/docker-shared-permissions/
+ARG USER_ID
+ARG GROUP_ID
+RUN /usr/sbin/groupadd --gid $GROUP_ID user
+RUN /usr/sbin/useradd --uid $USER_ID --gid $GROUP_ID user
+USER user
+
+# install serverless - npm is a dependency (https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html)
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash \
+  && . ~/.nvm/nvm.sh \
+  && nvm install node \
+  && npm install -g serverless serverless-pseudo-parameters serverless-domain-manager
+
+# override entrypoint from parent image so that we can easily run php or bash or composer commands
+ENTRYPOINT []
+
+# default command to bash
+CMD [ "bash" ]
