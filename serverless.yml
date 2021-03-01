@@ -1,13 +1,13 @@
 #service: exporo_sls_laravel_boilerplate
-service: exporo-sls-laravel
+service: booj-reading-list
 
 provider:
   name: aws
   runtime: provided
-  region: eu-central-1
+  region: us-west-2
   vpc:
     securityGroupIds:
-    - Fn::GetAtt: ServerlessVPC.DefaultSecurityGroup
+    - !GetAtt ServerlessVPC.DefaultSecurityGroup
     subnetIds:
     - Ref: ServerlessSubnetA
     - Ref: ServerlessSubnetB
@@ -67,14 +67,14 @@ custom:
   REGION: ${opt:region, self:provider.region}
   STAGE: ${opt:stage, self:provider.stage}
 
-  customDomain:
-    domainName: ${self:custom.customDomain.switch.${opt:stage, self:provider.stage}.domainName , '${self:custom.customDomain.switch.default.domainName}'}
-    switch:
-      baseDomain: techdev2.exporo.de
-      default:
-        domainName: ${opt:stage, self:provider.stage}.${self:custom.customDomain.switch.baseDomain}
-      production:
-        domainName: ${self:custom.customDomain.switch.baseDomain}
+  # customDomain:
+  #   domainName: ${self:custom.customDomain.switch.${opt:stage, self:provider.stage}.domainName , '${self:custom.customDomain.switch.default.domainName}'}
+  #   switch:
+  #     baseDomain: techdev2.exporo.de
+  #     default:
+  #       domainName: ${opt:stage, self:provider.stage}.${self:custom.customDomain.switch.baseDomain}
+  #     production:
+  #       domainName: ${self:custom.customDomain.switch.baseDomain}
 
   AURORA:
     MIN_CAPACITY: 1
@@ -95,7 +95,7 @@ functions:
     handler: application/public/index.php
     timeout: 30
     layers:
-    - 'arn:aws:lambda:eu-central-1:209497400698:layer:php-73-fpm:9'
+    - 'arn:aws:lambda:us-west-2:209497400698:layer:php-73-fpm:9'
     events:
     - http: 'ANY /'
     - http: 'ANY {proxy+}'
@@ -109,8 +109,8 @@ functions:
         input:
           cli: "schedule:run >>/dev/stderr"
     layers:
-    - 'arn:aws:lambda:eu-central-1:209497400698:layer:php-73:9' # PHP
-    - 'arn:aws:lambda:eu-central-1:209497400698:layer:console:9' # The "console" layer
+    - 'arn:aws:lambda:us-west-2:209497400698:layer:php-73:9' # PHP
+    - 'arn:aws:lambda:us-west-2:209497400698:layer:console:9' # The "console" layer
 
   queueListener:
     handler: php/SQSBrefEvent.php
@@ -119,7 +119,7 @@ functions:
     - sqs:
         arn: !GetAtt SQSQueue.Arn
     layers:
-    - 'arn:aws:lambda:eu-central-1:209497400698:layer:php-73:9' # PHP
+    - 'arn:aws:lambda:us-west-2:209497400698:layer:php-73:9' # PHP
 
 package:
   exclude:
@@ -132,7 +132,7 @@ package:
 plugins:
 - serverless-pseudo-parameters
 - deploy-chain
-- serverless-domain-manager
+# - serverless-domain-manager
 
 #AWS Resources
 resources:

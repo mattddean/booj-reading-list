@@ -82,7 +82,7 @@ Resources:
     Properties:
       DisableApiTermination: false
       KeyName: ${self:custom.UUID}
-      ImageId: ami-0097b5eb
+      ImageId: ami-0252b186475f1ca8e
       InstanceType: t2.nano
       Monitoring: false
       SourceDestCheck: false
