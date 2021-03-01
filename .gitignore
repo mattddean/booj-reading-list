@@ -10,3 +10,5 @@ application/node_modules
 application/vendor
 application/.env
 application/composer.lock
+
+/.aws_creds
