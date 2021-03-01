@@ -78,7 +78,7 @@ custom:
 
   AURORA:
     MIN_CAPACITY: 1
-    MAX_CAPACITY: 8
+    MAX_CAPACITY: 1
     AUTO_PAUSE_SECONDS: 600
     DELETE_PROTECTION: ${self:custom.AURORA.SWITCH.${opt:stage, self:provider.stage}.DELETE_PROTECTION , '${self:custom.AURORA.SWITCH.default.DELETE_PROTECTION}'}
     AUTO_PAUSE: ${self:custom.AURORA.SWITCH.${opt:stage, self:provider.stage}.AUTO_PAUSE , '${self:custom.AURORA.SWITCH.default.AUTO_PAUSE}'}
