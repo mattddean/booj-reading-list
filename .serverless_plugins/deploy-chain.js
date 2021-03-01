@@ -89,7 +89,14 @@ class DeployChain {
             this.exec("aws ssm delete-parameter --name " + this.getConfig().uuid + this.setRegionArgument() + this.setProfileArgument());
         }
 
-        this.exec("rm ~/.ssh/" + this.getConfig().uuid);
+        const keyFile = "~/.ssh/" + this.getConfig().uuid;
+
+        try {
+            this.exec("rm " + keyFile);
+        } catch (e) {
+            // This happens quite often; we don't want to fail the whole script when it does, so we'll just output this warning instead.
+            this.serverless.cli.log("WARNING: Could not remove " + keyFile + ". This is normal. Run again withS SLS_debug=* for more detailed info about this warning.")
+        }
     }
 
     /////////
