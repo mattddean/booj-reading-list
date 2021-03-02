@@ -11,10 +11,10 @@
 |
 */
 
+// https://blog.pusher.com/web-application-laravel-vue-part-4/
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/keep-warm', 'KeepWarmController@index')->name('keep-warm');
 Route::get('/smoke-test', 'SmokeTestController@index');
-
-// https://blog.pusher.com/web-application-laravel-vue-part-4/
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
