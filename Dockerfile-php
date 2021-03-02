@@ -1,4 +1,4 @@
-FROM bref/php-74
+FROM bref/php-73-fpm-dev
 
 # create a place to put installation scripts
 RUN mkdir /install
@@ -22,8 +22,3 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | b
   && nvm install node \
   && npm install -g serverless serverless-pseudo-parameters serverless-domain-manager
 
-# override entrypoint from parent image so that we can easily run php or bash or composer commands
-ENTRYPOINT []
-
-# default command to bash
-CMD [ "bash" ]

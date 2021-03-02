@@ -9,20 +9,38 @@ services:
     - ./application/public:/static
 
   web:
-    image: bref/fpm-dev-gateway
+    build:
+      context: .
+      dockerfile: Dockerfile-web
+      args:
+        USER_ID: ${CURRENT_USER_ID}
+        GROUP_ID: ${CURRENT_GROUP_ID}
+    image: web
     ports:
-    - 80:80
+      - 8000:80
     volumes:
-    - .:/var/task
+      - type: bind
+        source: ./
+        target: /var/task
     depends_on:
-    - php
+      - php
     environment:
       HANDLER: application/public/index.php
 
   php:
-    image: bref/php-73-fpm-dev
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+      args:
+        USER_ID: ${CURRENT_USER_ID}
+        GROUP_ID: ${CURRENT_GROUP_ID}
+    image: php
+    # provide aws creds to env for serverless to use
+    env_file: ./.aws_creds
     volumes:
-    - .:/var/task:ro
+      - type: bind
+        source: ./
+        target: /var/task
 
   mysql:
     image: mysql:5.6
@@ -32,28 +50,15 @@ services:
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: root
     volumes:
-    - ./data/mysql/:/var/lib/mysql
+    - serverless_reading_list-mysql:/var/lib/mysql
     ports:
     - 3306:3306
 
   redis:
     image: redis:4.0.11-alpine
     volumes:
-    - ./data/redis:/data
+    - serverless_reading_list-redis:/data
 
-  console:
-    build:
-      context: .
-      dockerfile: Dockerfile-php-console
-      args:
-        USER_ID: ${CURRENT_USER_ID}
-        GROUP_ID: ${CURRENT_GROUP_ID}
-    # provide aws creds to env for serverless to use
-    env_file: ./.aws_creds
-    image: console
-    volumes:
-      - type: bind
-        source: ./
-        target: /var/task
-    entrypoint: []
-    command: bash
+volumes:
+  serverless_reading_list-mysql:
+  serverless_reading_list-redis:

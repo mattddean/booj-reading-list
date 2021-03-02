@@ -1,3 +1,6 @@
+CURRENT_USER_ID=$(id -u) CURRENT_GROUP_ID=$(id -g) docker-compose build php
+CURRENT_USER_ID=$(id -u) CURRENT_GROUP_ID=$(id -g) docker-compose build web
+
 composer install
 
 cd application
@@ -22,3 +25,9 @@ docker-compose up assets web php mysql redis
 
 - Upgrade to newest Laravel version
 - GitHub Actions CI/CD
+
+# Local Development
+
+```bash
+docker-compose up assets web php mysql redis
+```
