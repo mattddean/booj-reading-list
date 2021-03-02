@@ -1,5 +1,5 @@
 #service: exporo_sls_laravel_boilerplate
-service: booj-reading-list
+service: serverless-reading-list
 
 provider:
   name: aws
