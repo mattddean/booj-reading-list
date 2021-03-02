@@ -1,2 +1,6 @@
+# These are used by the "console" Docker service when you start it so that
+# aws-cli commands run in it have permission to modify your AWS account.
+# This allows serverless.yml to spin up the resources necessary to power this app in the cloud.
+
 AWS_ACCESS_KEY_ID=access_key_here
 AWS_SECRET_ACCESS_KEY=secret_access_key_here
