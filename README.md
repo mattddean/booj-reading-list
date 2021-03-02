@@ -70,13 +70,9 @@ sls deploy
 ```
 
 
-# TODO
+# Future Improvements
 
 - Upgrade to newest Laravel version
-- GitHub Actions CI/CD
+- GitHub Actions
+- Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.
 
-# Local Development
-
-```bash
-docker-compose up assets web php mysql redis
-```
