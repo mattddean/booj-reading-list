@@ -9,21 +9,13 @@ services:
     - ./application/public:/static
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile-web
-      args:
-        USER_ID: ${CURRENT_USER_ID}
-        GROUP_ID: ${CURRENT_GROUP_ID}
-    image: web
+    image: bref/fpm-dev-gateway
     ports:
-      - 8000:80
+    - 8000:80
     volumes:
-      - type: bind
-        source: ./
-        target: /var/task
+    - .:/var/task:ro
     depends_on:
-      - php
+    - php
     environment:
       HANDLER: application/public/index.php
 
@@ -36,7 +28,9 @@ services:
         GROUP_ID: ${CURRENT_GROUP_ID}
     image: php
     # provide aws creds to env for serverless to use
-    env_file: ./.aws_creds
+    env_file: 
+      - ./.aws_creds
+      - ./application/.env.local
     volumes:
       - type: bind
         source: ./
