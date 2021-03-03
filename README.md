@@ -71,7 +71,6 @@ sls deploy
 
 # Future Improvements
 
-- Upgrade npm packages to address npm vulnerability audit results
 - Upgrade to newest Laravel version
 - GitHub Actions
 - Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.

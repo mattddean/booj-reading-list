@@ -4,18 +4,18 @@ services:
   assets:
     image: flashspys/nginx-static
     ports:
-    - 8080:80
+      - 8080:80
     volumes:
-    - ./application/public:/static
+      - ./frontend:/static
 
   web:
     image: bref/fpm-dev-gateway
     ports:
-    - 8000:80
+      - 8000:80
     volumes:
-    - .:/var/task:ro
+      - .:/var/task:ro
     depends_on:
-    - php
+      - php
     environment:
       HANDLER: application/public/index.php
 
@@ -27,8 +27,11 @@ services:
         USER_ID: ${CURRENT_USER_ID}
         GROUP_ID: ${CURRENT_GROUP_ID}
     image: php
+    ports:
+      - 8040:8080
+      - 8030:8000
     # provide aws creds to env for serverless to use
-    env_file: 
+    env_file:
       - ./.aws_creds
       - ./application/.env.local
     volumes:
@@ -45,14 +48,14 @@ services:
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: root
     volumes:
-    - serverless_reading_list-mysql:/var/lib/mysql
+      - serverless_reading_list-mysql:/var/lib/mysql
     ports:
-    - 3306:3306
+      - 3306:3306
 
   redis:
     image: redis:4.0.11-alpine
     volumes:
-    - serverless_reading_list-redis:/data
+      - serverless_reading_list-redis:/data
 
 volumes:
   serverless_reading_list-mysql:

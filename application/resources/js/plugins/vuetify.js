@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vue from "vue";
+import Vuetify from "vuetify/lib";
 
 // https://medium.com/@andylauszp/how-to-setup-laravel-with-vuetify-using-laravel-mix-90414f462efa
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-const opts = {}
+const opts = {};
 
-export default new Vuetify(opts)
+export default new Vuetify(opts);

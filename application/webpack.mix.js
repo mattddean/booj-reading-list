@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,12 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-require('vuetifyjs-mix-extension')
+require("./mix-plugins/vuetify");
+
+// require("vuetifyjs-mix-extension");
 
 // https://blog.pusher.com/web-application-laravel-vue-part-4/
 // https://medium.com/@andylauszp/how-to-setup-laravel-with-vuetify-using-laravel-mix-90414f462efa
 
-mix.js('resources/js/app.js', 'public/js')
-    .vuetify('vuetify-loader')
-    .vue()
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+  .js("resources/js/app.js", "public/js")
+  .thevuetifyplugin()
+  .vue()
+  .sass("resources/sass/app.scss", "public/css");
