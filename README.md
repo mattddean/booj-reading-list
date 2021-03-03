@@ -31,7 +31,7 @@ php artisan migrate
 ```bash
 docker-compose up --entrypoint bash php
 
-cd application 
+cd application
 
 npm install
 
@@ -68,9 +68,9 @@ cd ..
 sls deploy
 ```
 
-
 # Future Improvements
 
+- Consider converting frontend from a vue-clie app to a webpack app
 - Upgrade to newest Laravel version
-- GitHub Actions
+- Have GitHub Actions automatically deploy new versions of the app to AWS
 - Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.

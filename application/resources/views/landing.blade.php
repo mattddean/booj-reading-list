@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
     <link href="{{ asset('dist/js/app.js') }}" rel="preload" as="script">
-    <link href="{{ asset('dist/js/chunk-vendors.js') }}" rel="preload" as="script"></head>
+    <link href="{{ asset('dist/js/about.js') }}" rel="preload" as="script">
+    <link href="{{ asset('dist/js/chunk-vendors.js') }}" rel="preload" as="script">
+</head>
     <!-- <link href=" {{ asset('css/app.css') }}" rel="stylesheet"> -->
 </head>
 
@@ -22,6 +24,7 @@
     </div>
     <script type="text/javascript" src="{{ asset('dist/js/chunk-vendors.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dist/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('dist/js/about.js') }}"></script>
 </body>
 
 </html>
