@@ -20,5 +20,5 @@ USER user
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash \
   && . ~/.nvm/nvm.sh \
   && nvm install node \
-  && npm install -g serverless serverless-pseudo-parameters serverless-domain-manager
+  && npm install -g serverless serverless-pseudo-parameters serverless-domain-manager @vue/cli
 

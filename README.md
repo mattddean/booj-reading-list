@@ -2,11 +2,10 @@
 
 ```bash
 CURRENT_USER_ID=$(id -u) CURRENT_GROUP_ID=$(id -g) docker-compose build php
-CURRENT_USER_ID=$(id -u) CURRENT_GROUP_ID=$(id -g) docker-compose build web
 
 docker-compose up --entrypoint bash php
 
-# install serverless.yml dependencies at repo root (serverless itself is already installed clobally in the php image)
+# install serverless.yml dependencies at repo root (serverless itself is already installed globally in the php Docker image)
 npm install
 
 composer install
