@@ -30,6 +30,7 @@ services:
     ports:
       - 8040:8080
       - 8030:8000
+      - 4000:4000
     # provide aws creds to env for serverless to use
     env_file:
       - ./.aws_creds

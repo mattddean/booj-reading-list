@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<!-- https://blog.pusher.com/web-application-laravel-vue-part-4/ -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>frontend</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
+    />
+    <link href="{{ asset('dist/js/app.js') }}" rel="preload" as="script" />
+    <link href="{{ asset('dist/js/chunk-vendors.js') }}" rel="preload" as="script" />
+  </head>
 
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{csrf_token()}}">
-    <title>Serverless Reading List</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
-    <link href="{{ asset('dist/js/app.js') }}" rel="preload" as="script">
-    <link href="{{ asset('dist/js/book-detail.js') }}" rel="preload" as="script">
-    <link href="{{ asset('dist/js/chunk-vendors.js') }}" rel="preload" as="script">
-</head>
-    <!-- <link href=" {{ asset('css/app.css') }}" rel="stylesheet"> -->
-</head>
-
-<body>
-    <div id="app">
-        <!-- <app></app> -->
-    </div>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but frontend doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
     <script type="text/javascript" src="{{ asset('dist/js/chunk-vendors.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dist/js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('dist/js/book-detail.js') }}"></script>
-</body>
-
+  </body>
 </html>
