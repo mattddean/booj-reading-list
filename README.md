@@ -74,3 +74,4 @@ sls deploy
 - Upgrade to newest Laravel version
 - Have GitHub Actions automatically deploy new versions of the app to AWS
 - Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.
+- Loader buttons
