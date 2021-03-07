@@ -11,6 +11,7 @@
     "php": "^7.3",
     "bref/bref": "^0.5",
     "fideloper/proxy": "^4.0",
+    "joselfonseca/lighthouse-graphql-passport-auth": "^6.0",
     "laravel/framework": "^8.0",
     "laravel/passport": "^10.0",
     "laravel/tinker": "^2.0",
