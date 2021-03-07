@@ -10,13 +10,13 @@ class Login
 {
     /**
      * @param  null  $_
-     * @param  array<string, mixed>  $args
+     * @param  array<string, mixed>  $credentials
      */
-    public function __invoke($_, array $args): User
+    public function __invoke($_, array $credentials): User
     {
         $guard = Auth::guard();
 
-        if( ! $guard->attempt($args)) {
+        if( ! $guard::attempt($credentials)) {
             throw new Exception('Invalid credentials.');
         }
 
