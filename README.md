@@ -1,3 +1,47 @@
+# serverless-reading-list
+
+## Technologies
+
+- GraphQL
+- serverless cloud deployment (well, almost serverless - more on that later)
+- Docker development environment that emulates the serverless cloud environment locally
+
+## How the Repo was Set Up
+
+### How Lighthouse was Installed
+
+```bash
+docker-compose up
+docker-compose exec php bash
+cd application
+composer require nuwave/lighthouse
+php artisan vendor:publish --tag=lighthouse-schema
+php artisan lighthouse:ide-helper
+composer require mll-lab/laravel-graphql-playground
+```
+
+## GraphQL
+
+### Visit the GraphQL Playground
+
+The GraphQL Playground is exposed via the Laravel Lighthouse plugin, through the `php` docker service.
+
+After running:
+
+`docker-comopse up`
+
+Visit:
+
+http://localhost:8000/graphql-playground
+
+### Updating the GraphQL Schema
+
+Make your updates, then run:
+
+```bash
+php artisan lighthouse:clear-cache
+```
+
 ## Initial Backend Setup
 
 ```bash
