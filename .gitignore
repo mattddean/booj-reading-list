@@ -13,3 +13,5 @@ application/.env
 /frontend/node_modules
 
 /application/temp
+
+.DS_Store
