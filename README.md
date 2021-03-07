@@ -6,6 +6,10 @@
 - serverless cloud deployment (well, almost serverless - more on that later)
 - Docker development environment that emulates the serverless cloud environment locally
 
+## Getting your development environment set up
+
+````bash
+
 ## How the Repo was Set Up
 
 ### How Lighthouse was Installed
@@ -18,7 +22,7 @@ composer require nuwave/lighthouse
 php artisan vendor:publish --tag=lighthouse-schema
 php artisan lighthouse:ide-helper
 composer require mll-lab/laravel-graphql-playground
-```
+````
 
 ## GraphQL
 
@@ -70,21 +74,7 @@ cd application/
 php artisan migrate
 ```
 
-## Initial Frontend Setup
-
-```bash
-docker-compose up --entrypoint bash php
-
-cd application
-
-npm install
-
-exit
-
-docker-compose up
-```
-
-## Development
+## Development Setup
 
 ### Start all services
 
@@ -99,6 +89,22 @@ Once the services are running with `docker-compose up`, you can use the followin
 ```bash
 docker-compose exec php bash
 ```
+
+### Making Frontend Changes
+
+```bash
+docker-compose up
+
+docker-compose exec php bash
+
+cd frontend
+
+npm install
+
+npm run watch
+```
+
+Then make your frontend changes. npm will watch for when you save files, but you'll still need to manually refresh your browser for now. See [Future Improvements](#future-improvements)
 
 ## Deployment to AWS
 
@@ -132,3 +138,4 @@ sls deploy
 - Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.
 - Vuetify loader buttons
 - Consider making users->books a many-to-many relation and adding functionality so that when any user creates a book, the book gets saved in the books table and can be retrieved by another user and instantly brought into their reading list
+- Set up browser to automatically refresh when making frontend changes
