@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 

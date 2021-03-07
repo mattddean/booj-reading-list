@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 
@@ -23,7 +23,7 @@ class Login
         /**
          * Since we successfully logged in, this can no longer be `null`.
          *
-         * @var \App\User $user
+         * @var \App\Models\User; $user
          */
         $user = $guard->user();
 

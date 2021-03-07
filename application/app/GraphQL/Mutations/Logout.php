@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class Logout
