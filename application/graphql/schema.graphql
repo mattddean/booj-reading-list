@@ -7,16 +7,58 @@ scalar DateTime
 
 type Query {
   users: [User!]! @paginate(defaultCount: 10)
+  me: User @auth
+  book(id: ID @eq): Book @guard @find
+  books(userId: ID @eq): Book @guard @find
+  genre(id: ID @eq): Genre @find
+  genres(userId: ID @eq): Book @find
+  author(id: ID @eq): Author @find
+  authors(userId: ID @eq): Book @find
+}
+
 type Mutation {
+  # login mutations
   register(name: String!, email: String!, password: String!): User! @create
-  login(email: String!, password: String!): User!
+  login(email: String!, password: String!): User! @find
   logout: User @guard
+
+  # book mutations
+  createBook(name: String!, author: Author!, Genre: Genre!): Book! @create
+  createAuthor(name: String!): Author! @create
+  createGenre(name: String!): Genre! @create
 }
 
 type User {
   id: ID!
   name: String!
   email: String!
+
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Author {
+  id: ID!
+  name: String!
+
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Genre {
+  id: ID!
+  name: String!
+
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Book {
+  id: ID!
+  name: String!
+  author: Author!
+  genre: Genre!
+
   created_at: DateTime!
   updated_at: DateTime!
 }
