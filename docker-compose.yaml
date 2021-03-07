@@ -39,26 +39,26 @@ services:
       - type: bind
         source: ./
         target: /var/task
-      - serverless_reading_list-home_npm_dir:/home/user/.npm
+      - home_npm:/home/user/.npm
 
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7.33
     environment:
       MYSQL_DATABASE: forge
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - serverless_reading_list-mysql:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     ports:
       - 3306:3306
 
   redis:
     image: redis:4.0.11-alpine
     volumes:
-      - serverless_reading_list-redis:/data
+      - redis_data:/data
 
 volumes:
-  serverless_reading_list-mysql:
-  serverless_reading_list-redis:
-  serverless_reading_list-home_npm_dir:
+  mysql_data:
+  redis_data:
+  home_npm:
