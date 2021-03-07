@@ -112,6 +112,17 @@ cd ..
 sls deploy
 ```
 
+# TODO
+
+- Create production .env file
+  - Include passport keys in it as
+    - PASSPORT_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+      <private key here>
+      -----END RSA PRIVATE KEY-----"
+    - PASSPORT_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+      <public key here>
+      -----END PUBLIC KEY-----"
+
 # Future Improvements
 
 - Consider converting frontend from a vue-clie app to a webpack app
