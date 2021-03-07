@@ -11,3 +11,5 @@ application/.env
 /.aws_creds
 
 /frontend/node_modules
+
+/application/temp
