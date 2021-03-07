@@ -30,7 +30,7 @@ return [
     | the default location
     |
     */
-    'schema' => 'graphql/auth.graphql',
+    'schema' => null,
     /*
     |--------------------------------------------------------------------------
     | Username Column
