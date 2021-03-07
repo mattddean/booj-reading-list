@@ -125,8 +125,11 @@ sls deploy
 
 # Future Improvements
 
-- Consider converting frontend from a vue-clie app to a webpack app
+- Set up prettier as formatter for PHP
+- Pre-populate database with genres so that any user's random (and possibly non-existent) genre does not appear for other users
+- Consider converting frontend from a vue-clie app to a native webpack app
 - Upgrade to newest Laravel version
 - Have GitHub Actions automatically deploy new versions of the app to AWS
 - Compile JavaScript assets on deployment with GitHub Actions rather than committing them to the repo.
-- Loader buttons
+- Vuetify loader buttons
+- Consider making users->books a many-to-many relation and adding functionality so that when any user creates a book, the book gets saved in the books table and can be retrieved by another user and instantly brought into their reading list
