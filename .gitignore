@@ -15,3 +15,5 @@ application/.env
 /application/temp
 
 .DS_Store
+
+/notes
