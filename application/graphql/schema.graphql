@@ -10,9 +10,12 @@ type Query {
   me: User @auth
   book(id: ID @eq): Book @guard @find
   books: [Book!]! @guard @all
+  books(user_id: ID @eq): [Book!]! @find
   genre(id: ID @eq): Genre! @find
+  genre(book_id: ID @eq): Genre! @find
   genres: [Genre!]! @guard @all
   author(id: ID @eq): Author! @find
+  author(book_id: ID @eq): Author! @find
   authors: [Author!]! @guard @all
 }
 
