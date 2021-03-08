@@ -6,20 +6,22 @@ scalar DateTime
   @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-  users: [User!]! @guard(with: ["api"])
+  users: [User!]! @guard(with: ["api"]) @all
   me: User @auth
   book(id: ID @eq): Book @guard @find
-  books(userId: ID @eq): Book @guard @find
-  genre(id: ID @eq): Genre @find
-  genres(userId: ID @eq): Book @find
-  author(id: ID @eq): Author @find
-  authors(userId: ID @eq): Book @find
+  books: [Book!]! @guard @all
+  genre(id: ID @eq): Genre! @find
+  genres: [Genre!]! @guard @all
+  author(id: ID @eq): Author! @find
+  authors: [Author!]! @guard @all
 }
 
 type Mutation {
-  createBook(name: String!, author: Author!, Genre: Genre!): Book! @create
-  createAuthor(name: String!): Author! @create
-  createGenre(name: String!): Genre! @create
+  createBook(name: String!, author: Author!, Genre: Genre!): Book!
+    @guard
+    @create
+  createAuthor(name: String!): Author! @guard @create
+  createGenre(name: String!): Genre! @guard @create
 }
 
 type Author {
