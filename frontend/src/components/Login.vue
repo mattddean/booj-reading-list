@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import { GC_USER_ID, GC_AUTH_TOKEN, FULL_NAME } from "../constants/settings";
 import { REGISTER_MUTATION, LOGIN_MUTATION } from "../constants/graphql";
+import { doLogin } from "../auth/auth";
 
 export default {
   name: "Login",
@@ -48,6 +48,7 @@ export default {
     confirm() {
       const { name, username, password, passwordConfirmation } = this.$data;
       if (this.login) {
+        // login to existing user account
         this.$apollo
           .mutate({
             mutation: LOGIN_MUTATION,
@@ -57,15 +58,13 @@ export default {
             },
           })
           .then((result) => {
-            const id = result.data.login.user.id;
-            const token = result.data.login.access_token;
-            const fullName = result.data.login.user.name;
-            this.saveUserData(id, token, fullName);
+            this.handleLogin(result);
           })
           .catch((error) => {
             alert(error);
           });
       } else {
+        // register new user
         this.$apollo
           .mutate({
             mutation: REGISTER_MUTATION,
@@ -77,10 +76,7 @@ export default {
             },
           })
           .then((result) => {
-            const id = result.data.login.user.id;
-            const token = result.data.login.access_token;
-            const fullName = result.data.login.user.name;
-            this.saveUserData(id, token, fullName);
+            this.handleLogin(result);
           })
           .catch((error) => {
             alert(error);
@@ -88,15 +84,11 @@ export default {
       }
       this.$router.push({ path: "/" });
     },
-    saveUserData(id, token, fullName) {
-      // update localStorage with these new values
-      localStorage.setItem(GC_USER_ID, id);
-      localStorage.setItem(GC_AUTH_TOKEN, token);
-      localStorage.setItem(FULL_NAME, fullName);
-
-      // update root Vue data with these new values
-      this.$root.$data.userId = localStorage.getItem(GC_USER_ID);
-      this.$root.$data.fullName = localStorage.getItem(FULL_NAME);
+    handleLogin(loginMutationResult) {
+      const accessToken = loginMutationResult.data.login.access_token;
+      const userId = loginMutationResult.data.login.user.id;
+      const userFullName = loginMutationResult.data.login.user.name;
+      doLogin(this.$apollo, this.$root, accessToken, userId, userFullName);
     },
   },
 };

@@ -31,9 +31,20 @@
           >Login
         </v-btn>
       </router-link>
-      <div v-else>
-        <span>{{ this.$root.$data.fullName }}</span>
-      </div>
+      <v-menu v-else offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            {{ $root.$data.fullName }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-btn @click="logout">
+              <v-list-item-title>Logout</v-list-item-title>
+            </v-btn>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main>
@@ -71,3 +82,29 @@
   }
 }
 </style>
+
+<script>
+import { LOGOUT_MUTATION } from "./constants/graphql";
+import { doLogout } from "./auth/auth";
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$apollo
+        .mutate({
+          mutation: LOGOUT_MUTATION,
+        })
+        .then(() => {
+          // TODO: consider doing something with the result (we get a status and a message back)
+
+          doLogout(this.$apollo, this.$root);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+  },
+};
+</script>
