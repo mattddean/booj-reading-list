@@ -8,18 +8,30 @@ export const REGISTER_MUTATION = gql`
     $name: String!
     $username: String!
     $password: String!
+    $passwordConfirmation: String!
   ) {
     register(
-      name: $name
-      authProvider: { username: { username: $username, password: $password } }
+      input: {
+        name: $name
+        email: $username
+        password: $password
+        password_confirmation: $passwordConfirmation
+      }
     ) {
-      id
+      tokens {
+        access_token
+        refresh_token
+        expires_in
+        token_type
+      }
+      status
     }
 
     login(input: { username: $username, password: $password }) {
       access_token
       user {
         id
+        name
       }
     }
   }

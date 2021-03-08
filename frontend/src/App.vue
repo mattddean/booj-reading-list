@@ -23,7 +23,7 @@
 
       <v-spacer></v-spacer>
 
-      <router-link to="Login">
+      <router-link v-if="this.$root.$data.fullName == null" to="Login">
         <v-btn
           href="https://github.com/vuetifyjs/vuetify/releases/latest"
           target="_blank"
@@ -31,6 +31,9 @@
           >Login
         </v-btn>
       </router-link>
+      <div v-else>
+        <span>{{ this.$root.$data.fullName }}</span>
+      </div>
     </v-app-bar>
 
     <v-main>
