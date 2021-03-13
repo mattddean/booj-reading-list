@@ -17,9 +17,18 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
 
+# https://dev.to/joselfonseca/graphql-auth-with-passport-and-lighthouse-php-14g5
 Artisan::command('create_sample_user', function () {
     \App\Models\User::create([
         'name' => 'Some Developer',
+        'email' => 'myemail@email.com',
+        'password' => bcrypt('kasdf83u4bit3ui')
+    ]);
+})->describe('Create sample user');
+
+Artisan::command('create_sample_book', function () {
+    \App\Models\Book::create([
+        'name' => 'Harry Potter and the Philosopher\'s Stone',
         'email' => 'myemail@email.com',
         'password' => bcrypt('kasdf83u4bit3ui')
     ]);
